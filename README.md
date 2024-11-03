@@ -1,6 +1,6 @@
 # IDS706_colab
 ![CI](https://github.com/nogibjj/IDS706_colab/actions/workflows/CICD.yml/badge.svg)
-![CI](https://github.com/nogibjj/IDS706_colab/workflows/format.yml/badge.svg)
+![CI](https://github.com/nogibjj/IDS706_colab/actions/workflows/format.yml/badge.svg)
 ![CI](https://github.com/nogibjj/IDS706_colab/actions/workflows/lint.yml/badge.svg)
 ![CI](https://github.com/nogibjj/IDS706_colab/actions/workflows/test.yml/badge.svg)
 
@@ -24,7 +24,7 @@ This notebook download the [NBA_2021.csv](./NBA_2021.csv) from website. It will 
 
 Then it will do 2 tasks:
 
-* Count the 10 players who have the highest efficiency value among those who have played more than 20 times
+* Count the 10 players who have the highest efficiency value among those who have played more than 20 times then visualize the output
     ```python
     df["Efficiency_Rating"] = (
         df["PTS"]
@@ -40,7 +40,17 @@ Then it will do 2 tasks:
         10, "Efficiency_Rating"
     )
     print(top_efficiency_players)
+
+    plt.figure(figsize=(12, 8))
+    plt.bar(top_scorers_per_team["Player"], top_scorers_per_team["PTS"], color="skyblue")
+    plt.xlabel("Player")
+    plt.ylabel("Points (PTS)")
+    plt.title("Top Scorers Per Team (Minimum 20 Games Played)")
+    plt.xticks(rotation=45, ha="right")
+    plt.tight_layout()
+    plt.show()
     ```
+
 
 * Count the 10 players who get the highest score value in one team among thosse who have played more than 20 times and then visualize the output
     ```python
@@ -52,5 +62,15 @@ Then it will do 2 tasks:
         .reset_index(drop=True)
     ).sort_values("PTS", ascending=False)
     print(top_scorers_per_team[["Tm", "Player", "PTS"]])
+
+    plt.barh(
+    top_efficiency_players["Player"], top_efficiency_players["Efficiency_Rating"], color="salmon"
+    )
+    plt.xlabel("Efficiency Rating")
+    plt.ylabel("Player")
+    plt.title("Top 10 Players by Efficiency Rating (Minimum 20 Games Played)")
+    plt.gca().invert_yaxis()
+    plt.tight_layout()
+    plt.show()
     ```
 
