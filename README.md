@@ -14,7 +14,7 @@ Using `make install` to insatll necessary libs for this project
 
 Using `make lint` to check the lint
 
-Using run to run the same source code of the notebook in [src](./src/main.py)
+Using `make run` run to run the same source code of the notebook in [src](./src/main.py)
 
 Using `make test` to test the notebook and the source code.
 
